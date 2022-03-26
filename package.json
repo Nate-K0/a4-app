@@ -1,8 +1,8 @@
 {
   "name": "bti425-a3-nathan-kenopic",
-  "engines": { 
-    "node": "v17.4.0", 
-    "npm": "8.3.1" 
+  "engines": {
+    "node": "v17.4.0",
+    "npm": "8.3.1"
   },
   "version": "0.0.0",
   "scripts": {
