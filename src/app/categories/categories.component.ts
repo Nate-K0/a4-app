@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-categories',
@@ -6,20 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories: Array<any> = [
-    {cat: "Crime", num: 2},
-    {cat: "Comedy", num: 1},
-    {cat: "Musical", num: 1},
-    {cat: "Adventure", num: 2}, 
-    {cat: "Drama", num: 2},
-    {cat: "Action", num: 2},
-    {cat: "Documentary", num: 1}, 
-    {cat: "Thriller", num: 1}
-  ];
+  categories: Array<any> | undefined;
+  categ: any;
 
-  constructor() { }
+  constructor(private _postService : PostService) { }
 
   ngOnInit(): void {
+    this.categ = this._postService.getCategories().subscribe(category => {
+      this.categories = category;
+    })
   }
 
+  ngOnDestroy(): void {
+    if (this.categ) this.categ.unsubscribe();
+  }
 }
